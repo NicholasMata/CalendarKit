@@ -8,7 +8,7 @@ on:
       - ".github/workflows/deploy-docc.yml"
       - "Package.swift"
       - "Sources/**"
-      - "scripts/build-docc-site.sh"
+      - "docs/**"
   workflow_dispatch:
 
 permissions:
@@ -31,7 +31,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build DocC site
-        run: zsh ./scripts/build-docc-site.sh
+        run: zsh ./docs/build-docc-site.sh
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
