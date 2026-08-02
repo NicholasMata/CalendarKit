@@ -47,22 +47,45 @@ import SwiftUI
           }
           WeekdayLabels()
           DaysOfMonthGrid(month: month) { day in
-            Group {
-              if day.ignored {
-                Rectangle().fill(.clear)
-              } else {
-                DefaultDayView(day: day, selectedDate: selectedDate)
-                  .onTapGesture {
-                    selectedDate = day.date
-                  }
+            DefaultMonthGridDayView(day: day, selectedDate: selectedDate)
+              .onTapGesture {
+                selectedDate = day.date
               }
-            }
+              .allowsHitTesting(!day.ignored)
           }
-          .frame(height: MonthGridUtil.height(for: month.startDate))
+          .frame(height: MonthGridUtil.height(for: month))
         }
       }
     }
     .scrollTargetLayout()
   }
   .scrollPosition(id: $monthScrollPosition, anchor: .center)
+}
+
+struct DefaultMonthGridDayView<DayView: View>: View {
+  var content: DayView
+  var day: Day
+
+  init(day: Day, content: () -> DayView) {
+    self.day = day
+    self.content = content()
+  }
+
+  var body: some View {
+    Group {
+      if day.ignored {
+        Rectangle().fill(.clear)
+      } else {
+        content
+      }
+    }
+  }
+}
+
+extension DefaultMonthGridDayView where DayView == DefaultDayView {
+  init(day: Day, selectedDate: Date?, calendar: Calendar = .current) {
+    self.init(day: day) {
+      DefaultDayView(day: day, selectedDate: selectedDate, calendar: calendar)
+    }
+  }
 }
