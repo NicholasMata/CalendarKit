@@ -39,7 +39,7 @@ public struct DefaultDayView: View {
     .background(alignment: .bottom) {
       if isToday {
         RoundedRectangle(cornerRadius: 4)
-          .fill(Color(uiColor: .label))
+          .fill(Color.platformLabel)
           .frame(width: 35, height: 5)
       }
     }

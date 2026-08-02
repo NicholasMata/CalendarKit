@@ -117,7 +117,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
           Spacer()
           Text("Minimized")
         }
-        .foregroundStyle(Color(.label).opacity(0.7))
+        .foregroundStyle(Color.platformLabel.opacity(0.7))
       }
       VStack(alignment: .leading) {
         Text("Minimize to week")
