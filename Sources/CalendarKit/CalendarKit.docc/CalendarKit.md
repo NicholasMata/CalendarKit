@@ -2,6 +2,21 @@
 
 Composable SwiftUI building blocks for creating custom calendar interfaces.
 
+
+@Metadata {
+  @PageImage(
+    purpose: card,
+    source: "calendar-kit-card",
+    alt: "A composed calendar interface with a selected date"
+  )
+  @PageImage(
+    purpose: icon,
+    source: "calendar-kit-icon",
+    alt: "CalendarKit"
+  )
+  @PageColor(purple)
+}
+
 ## Overview
 
 `CalendarKit` sits above `CalendarExtensions` and provides reusable SwiftUI views that developers can compose into their own calendar experiences.

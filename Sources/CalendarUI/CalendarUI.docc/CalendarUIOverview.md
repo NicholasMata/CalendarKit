@@ -1,6 +1,7 @@
 # CalendarUI Overview
 
-`CalendarUI` is intended for developers who want complete calendar views with strong defaults.
+`CalendarUI` is intended to become the layer for complete calendar views with
+strong defaults. It currently contains no public views.
 
 ## Overview
 
@@ -19,4 +20,6 @@ Choose `CalendarExtensions` when you need only Foundation-level calendar logic.
 
 Choose `CalendarKit` when you want to compose your own SwiftUI calendar layout.
 
-Choose `CalendarUI` when you want a drop-in calendar experience with defaults already defined.
+No drop-in view is available from `CalendarUI` yet. Compose an interface from
+`CalendarKit` today, and adopt this module when its higher-level views become
+public.

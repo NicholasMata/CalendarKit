@@ -2,20 +2,33 @@
 
 Opinionated SwiftUI calendar views built on top of `CalendarKit`.
 
+@Metadata {
+  @PageImage(
+    purpose: card,
+    source: "calendar-ui-card",
+    alt: "A composed calendar interface with a selected date"
+  )
+  @PageImage(
+    purpose: icon,
+    source: "calendar-ui-icon",
+    alt: "CalendarUI"
+  )
+  @PageColor(orange)
+}
+
 ## Overview
 
 `CalendarUI` is the highest-level layer in the project.
 
-Use this package when you want ready-made calendar views rather than assembling primitives manually. `CalendarUI` is intended to provide polished defaults for layout, navigation, selection, and styling.
+`CalendarUI` is reserved for ready-made calendar views rather than primitives
+assembled by clients. The module does not currently expose a public view; use
+`CalendarKit` for the available SwiftUI components while this layer evolves.
 
-At the moment, this package is the place for full prebuilt calendar experiences that sit above the lower-level `CalendarKit` building blocks.
+This package is the future home of full prebuilt calendar experiences that sit
+above the lower-level `CalendarKit` building blocks.
 
 ### Topics
 
 #### Essentials
 
 - <doc:CalendarUIOverview>
-
-#### Views
-
-- ``CalendarView``

@@ -15,6 +15,23 @@ public struct DefaultDayView: View {
   /// The default height used by the day view.
   public static var height: CGFloat = 60
 
+  /// Creates a day cell with optional selection highlighting.
+  ///
+  /// - Parameters:
+  ///   - day: The day to display.
+  ///   - selectedDate: The selected date, or `nil` when there is no selection.
+  ///   - calendar: The calendar used to compare the displayed, selected, and
+  ///     current dates.
+  public init(
+    day: Day,
+    selectedDate: Date? = nil,
+    calendar: Calendar = .current
+  ) {
+    self.day = day
+    self.selectedDate = selectedDate
+    self.calendar = calendar
+  }
+
   var isSelected: Bool {
     guard let selectedDate = selectedDate else {
       return false

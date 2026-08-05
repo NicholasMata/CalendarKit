@@ -54,7 +54,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
     self.init(month: month, dayContent: dayContent)
   }
 
-  /// Creates a month grid for a resolved ``CalendarMonth`` value.
+  /// Creates a month grid for a resolved calendar month value.
   public init(
     month: CalendarMonth,
     dayContent: @escaping (Day) -> DayView
