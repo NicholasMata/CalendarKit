@@ -41,4 +41,10 @@ public struct MonthGridDay: Identifiable {
       isOutsideMonth: CalendarMonth.ID(day: day) != month.id
     )
   }
+
+  static func visibleDays(in month: CalendarMonth) -> [Self] {
+    (month.firstWeek.firstDay ... month.lastWeek.lastDay).map {
+      Self(day: $0, month: month)
+    }
+  }
 }

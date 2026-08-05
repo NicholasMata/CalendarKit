@@ -37,9 +37,7 @@ public enum MonthGridUtil {
 public struct DaysOfMonthGrid<DayView: View>: View {
   @Environment(\.monthGridDayHeight) private var dayHeight
 
-  private var month: CalendarMonth
-  private var startOfMonthGrid: CalendarDay
-  private var endOfMonthGrid: CalendarDay
+  private var days: [MonthGridDay]
 
   @ViewBuilder
   private var dayBuilder: (MonthGridDay) -> DayView
@@ -61,9 +59,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
     month: CalendarMonth,
     dayContent: @escaping (MonthGridDay) -> DayView
   ) {
-    self.month = month
-    startOfMonthGrid = month.firstWeek.firstDay
-    endOfMonthGrid = month.lastWeek.lastDay
+    days = MonthGridDay.visibleDays(in: month)
     dayBuilder = dayContent
   }
 
@@ -83,8 +79,8 @@ public struct DaysOfMonthGrid<DayView: View>: View {
   /// The rendered month grid view.
   public var body: some View {
     LazyVGrid(columns: columns, spacing: 0) {
-      ForEach(startOfMonthGrid ... endOfMonthGrid) { day in
-        dayBuilder(MonthGridDay(day: day, month: month))
+      ForEach(days) { day in
+        dayBuilder(day)
           .frame(height: dayHeight)
       }
     }

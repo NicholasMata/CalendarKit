@@ -25,6 +25,22 @@ public struct MinimizeDaysOfMonthGrid: ViewModifier {
     self.weekInMonth = weekInMonth
   }
 
+  static func collapsedHeight(
+    expandedHeight: CGFloat,
+    dayHeight: CGFloat,
+    progress: CGFloat
+  ) -> CGFloat {
+    expandedHeight - ((expandedHeight - dayHeight) * progress)
+  }
+
+  static func verticalOffset(
+    weekInMonth: Int,
+    dayHeight: CGFloat,
+    progress: CGFloat
+  ) -> CGFloat {
+    CGFloat(weekInMonth) * -dayHeight * progress
+  }
+
   /// Returns the modified content with the collapsing month-grid effect applied.
   public func body(content: Content) -> some View {
     content
@@ -34,10 +50,18 @@ public struct MinimizeDaysOfMonthGrid: ViewModifier {
         size = $0
       }
       .frame(
-        height: size.height - ((size.height - dayHeight) * progress),
+        height: Self.collapsedHeight(
+          expandedHeight: size.height,
+          dayHeight: dayHeight,
+          progress: progress
+        ),
         alignment: .top
       )
-      .offset(y: (CGFloat(weekInMonth) * -dayHeight) * progress)
+      .offset(y: Self.verticalOffset(
+        weekInMonth: weekInMonth,
+        dayHeight: dayHeight,
+        progress: progress
+      ))
       .contentShape(.rect)
       .clipped()
   }
