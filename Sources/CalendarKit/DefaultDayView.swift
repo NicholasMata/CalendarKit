@@ -7,12 +7,56 @@
 import CalendarExtensions
 import SwiftUI
 
+struct DefaultDayPresentation: Equatable {
+  let isToday: Bool
+  let isSelected: Bool
+  let isDimmed: Bool
+
+  init(
+    isToday: Bool,
+    isSelected: Bool,
+    isDimmed: Bool
+  ) {
+    self.isToday = isToday
+    self.isSelected = isSelected
+    self.isDimmed = isDimmed
+  }
+
+  init(
+    cell: MonthGridDay,
+    isSelected: Bool,
+    today: Date = .now
+  ) {
+    let calendar = cell.calendarDay.calendar
+
+    self.init(
+      isToday: calendar.isDate(cell.calendarDay.date, inSameDayAs: today),
+      isSelected: isSelected,
+      isDimmed: cell.isOutsideMonth
+    )
+  }
+
+  init(
+    cell: MonthGridDay,
+    selectedDate: Date?,
+    today: Date = .now
+  ) {
+    let calendar = cell.calendarDay.calendar
+
+    self.init(
+      cell: cell,
+      isSelected: selectedDate.map {
+        calendar.isDate(cell.calendarDay.date, inSameDayAs: $0)
+      } ?? false,
+      today: today
+    )
+  }
+}
+
 /// A default visual representation for a day in a calendar grid.
 public struct DefaultDayView<Label: View>: View {
-  var isToday: Bool
-  var isSelected: Bool
-  var isDimmed: Bool
-  private var label: Label
+  private let presentation: DefaultDayPresentation
+  private let label: Label
 
   /// Creates a day cell with resolved presentation state and custom label content.
   ///
@@ -27,9 +71,19 @@ public struct DefaultDayView<Label: View>: View {
     isDimmed: Bool = false,
     @ViewBuilder label: () -> Label
   ) {
-    self.isToday = isToday
-    self.isSelected = isSelected
-    self.isDimmed = isDimmed
+    presentation = DefaultDayPresentation(
+      isToday: isToday,
+      isSelected: isSelected,
+      isDimmed: isDimmed
+    )
+    self.label = label()
+  }
+
+  private init(
+    presentation: DefaultDayPresentation,
+    @ViewBuilder label: () -> Label
+  ) {
+    self.presentation = presentation
     self.label = label()
   }
 
@@ -37,18 +91,20 @@ public struct DefaultDayView<Label: View>: View {
   public var body: some View {
     label
       .foregroundStyle(
-        isDimmed ? .secondary : (isSelected ? Color.white : .primary)
+        presentation.isDimmed
+          ? .secondary
+          : (presentation.isSelected ? Color.white : .primary)
       )
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(alignment: .bottom) {
-        if isToday {
+        if presentation.isToday {
           RoundedRectangle(cornerRadius: 4)
             .fill(Color.platformLabel)
             .frame(width: 35, height: 5)
         }
       }
       .background(alignment: .center) {
-        if isSelected {
+        if presentation.isSelected {
           RoundedRectangle(cornerRadius: 4)
             .fill(.tint)
             .frame(width: 35, height: 35)
@@ -69,9 +125,10 @@ public extension DefaultDayView where Label == Text {
     isSelected: Bool
   ) {
     self.init(
-      isToday: cell.calendarDay.calendar.isDateInToday(cell.calendarDay.date),
-      isSelected: isSelected,
-      isDimmed: cell.isOutsideMonth
+      presentation: DefaultDayPresentation(
+        cell: cell,
+        isSelected: isSelected
+      )
     ) {
       Text(cell.calendarDay.dayOfMonth, format: .number)
     }
@@ -87,10 +144,12 @@ public extension DefaultDayView where Label == Text {
     selectedDate: Date? = nil
   ) {
     self.init(
-      cell: cell,
-      isSelected: selectedDate.map {
-        cell.calendarDay.calendar.isDate(cell.calendarDay.date, inSameDayAs: $0)
-      } ?? false
-    )
+      presentation: DefaultDayPresentation(
+        cell: cell,
+        selectedDate: selectedDate
+      )
+    ) {
+      Text(cell.calendarDay.dayOfMonth, format: .number)
+    }
   }
 }

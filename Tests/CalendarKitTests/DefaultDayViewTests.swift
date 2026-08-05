@@ -1,28 +1,35 @@
 import Foundation
-import SwiftUI
 import Testing
 
 import CalendarExtensions
 @testable import CalendarKit
 
 @Test
-@MainActor
-func initializesWithResolvedPresentationState() {
-  let view = DefaultDayView(
-    isToday: false,
+func derivesPresentationFromMonthGridDay() {
+  let calendar = gregorianCalendar()
+  let date = calendar.date(from: DateComponents(
+    year: 2026,
+    month: 8,
+    day: 5
+  ))!
+  let cell = MonthGridDay(
+    day: CalendarDay(containing: date, calendar: calendar),
+    isOutsideMonth: true
+  )
+  let presentation = DefaultDayPresentation(
+    cell: cell,
+    isSelected: true,
+    today: date
+  )
+
+  #expect(presentation == DefaultDayPresentation(
+    isToday: true,
     isSelected: true,
     isDimmed: true
-  ) {
-    Text("1")
-  }
-
-  #expect(!view.isToday)
-  #expect(view.isSelected)
-  #expect(view.isDimmed)
+  ))
 }
 
 @Test
-@MainActor
 func derivesSingleSelectionFromCalendarDays() {
   let calendar = gregorianCalendar()
   let dayDate = calendar.date(from: DateComponents(
@@ -31,21 +38,27 @@ func derivesSingleSelectionFromCalendarDays() {
     day: 5
   ))!
   let selectedDate = calendar.date(byAdding: .hour, value: 12, to: dayDate)
-  let day = MonthGridDay(
+  let cell = MonthGridDay(
     day: CalendarDay(containing: dayDate, calendar: calendar),
     isOutsideMonth: true
   )
+  let nextDay = calendar.date(byAdding: .day, value: 1, to: dayDate)!
 
-  let selectedView = DefaultDayView(
-    cell: day,
-    selectedDate: selectedDate
+  let selectedPresentation = DefaultDayPresentation(
+    cell: cell,
+    selectedDate: selectedDate,
+    today: nextDay
   )
-  let unselectedView = DefaultDayView(
-    cell: day,
-    selectedDate: nil
+  let unselectedPresentation = DefaultDayPresentation(
+    cell: cell,
+    selectedDate: nil,
+    today: nextDay
   )
 
-  #expect(selectedView.isSelected)
-  #expect(!unselectedView.isSelected)
-  #expect(selectedView.isDimmed)
+  #expect(selectedPresentation == DefaultDayPresentation(
+    isToday: false,
+    isSelected: true,
+    isDimmed: true
+  ))
+  #expect(!unselectedPresentation.isSelected)
 }
