@@ -1,5 +1,11 @@
 # CalendarKit
 
+[![Swift](https://img.shields.io/badge/Swift-6.0-orange?style=flat-square)](https://www.swift.org)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS_17%2B_%7C_macOS_15%2B-blue?style=flat-square)](#requirements)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](#installation)
+[![Documentation](https://img.shields.io/badge/Documentation-DocC-blue?style=flat-square)](https://nicholasmata.github.io/CalendarKit/documentation/)
+[![Deploy DocC](https://github.com/NicholasMata/CalendarKit/actions/workflows/deploy-docc.yml/badge.svg)](https://github.com/NicholasMata/CalendarKit/actions/workflows/deploy-docc.yml)
+
 CalendarKit is a layered Swift package for building calendar experiences on
 Apple platforms. It separates calendar-aware date modeling from SwiftUI layout
 so you can use the Foundation utilities on their own or compose a custom
