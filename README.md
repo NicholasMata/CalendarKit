@@ -1,3 +1,16 @@
+<p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="Sources/CalendarKit/CalendarKit.docc/Resources/calendar-kit-card~dark.png"
+    >
+    <img
+      src="Sources/CalendarKit/CalendarKit.docc/Resources/calendar-kit-card.png"
+      alt="Composable CalendarKit interface components"
+    >
+  </picture>
+</p>
+
 # CalendarKit
 
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange?style=flat-square)](https://www.swift.org)
