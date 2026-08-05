@@ -8,6 +8,7 @@
 import CalendarExtensions
 import SwiftUI
 
+@available(iOS 17.0, macOS 14.0, *)
 #Preview {
   @Previewable @State var selectedDate: Date? = nil
   @Previewable @State var monthScrollPosition: CalendarMonth.ID? = nil

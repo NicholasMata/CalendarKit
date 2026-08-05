@@ -14,7 +14,7 @@
 # CalendarKit
 
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange?style=flat-square)](https://www.swift.org)
-[![Platforms](https://img.shields.io/badge/Platforms-iOS_17%2B_%7C_macOS_15%2B-blue?style=flat-square)](#requirements)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS_16%2B_%7C_macOS_13%2B-blue?style=flat-square)](#requirements)
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](#installation)
 [![Documentation](https://img.shields.io/badge/Documentation-DocC-blue?style=flat-square)](https://nicholasmata.github.io/CalendarKit/documentation/)
 [![Deploy DocC](https://github.com/NicholasMata/CalendarKit/actions/workflows/deploy-docc.yml/badge.svg)](https://github.com/NicholasMata/CalendarKit/actions/workflows/deploy-docc.yml)
@@ -40,8 +40,8 @@ for API references and guides covering all three package modules.
 ## Requirements
 
 - Swift 6.0 or later
-- iOS 17 or later
-- macOS 15 or later
+- iOS 16 or later
+- macOS 13 or later
 
 ## Installation
 

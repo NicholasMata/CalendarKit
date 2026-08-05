@@ -37,7 +37,7 @@ public struct WeekdayLabels: View {
           .frame(maxWidth: .infinity)
       }
     }
-    .onChange(of: calendar.firstWeekday, initial: false) {
+    .onChange(of: calendar.firstWeekday) { _ in
       formattedWeekdaySymbols = WeekdayLabels.weekdaySymbols(with: formatStyle, using: calendar)
     }
   }

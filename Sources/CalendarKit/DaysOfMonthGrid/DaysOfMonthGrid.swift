@@ -90,6 +90,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
   }
 }
 
+@available(iOS 17.0, macOS 14.0, *)
 #Preview("Days of Month Grid") {
   @Previewable @State var firstDayOfWeek = 1
   @Previewable @State var selectedDate: Date? = nil
