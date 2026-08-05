@@ -55,8 +55,8 @@ In Xcode:
    https://github.com/NicholasMata/CalendarKit.git
    ```
 
-4. Set the dependency rule to **Branch** and enter `main`. The package does not
-   publish tagged releases yet.
+4. Set the dependency rule to **Exact Version** and enter `0.1.0-alpha.1`.
+   This is an alpha release, so APIs may change before the first stable release.
 5. Add `CalendarKit` and `CalendarExtensions` to your app target.
 
 Import `CalendarKit` for the SwiftUI components and `CalendarExtensions` for
