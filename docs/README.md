@@ -32,6 +32,8 @@ Open <http://localhost:8080/documentation/>. Stop the server with Control-C.
 The build treats DocC warnings as errors so broken symbol links and invalid
 catalog content fail locally and in continuous integration. It then uses
 `docc merge` to combine the module archives without a custom HTML landing page.
+The build also verifies that the synthesized landing page contains its image
+resources before producing a deployable artifact.
 
 GitHub Actions runs the same script and deploys the generated site to GitHub
 Pages. Configure the repository's Pages source to use GitHub Actions before

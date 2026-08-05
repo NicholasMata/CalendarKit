@@ -63,6 +63,12 @@ xcrun docc process-archive transform-for-static-hosting \
   --output-path "$SITE_DIR" \
   "${HOSTING_ARGUMENTS[@]}"
 
+LANDING_PAGE_DATA="$SITE_DIR/data/documentation.json"
+if ! grep -q '"type"[[:space:]]*:[[:space:]]*"image"' "$LANDING_PAGE_DATA"; then
+  echo "Merged DocC landing page is missing image resources" >&2
+  exit 1
+fi
+
 touch "$SITE_DIR/.nojekyll"
 
 echo "DocC site generated at $SITE_DIR"
