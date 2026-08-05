@@ -34,25 +34,8 @@ CalendarKit currently provides:
 - Default selectable day cells and month-grid layout helpers
 - A modifier for collapsing a month grid toward a selected week
 
-## Documentation
-
-Browse the complete API reference and guides on the
-[CalendarKit documentation site](https://nicholasmata.github.io/CalendarKit/documentation/).
-The site combines all three package modules into one searchable DocC archive.
-
-## Package Structure
-
-The package is organized into three layers:
-
-- **CalendarExtensions** provides Foundation-only period models, calendar math,
-  and date utilities. It has no SwiftUI dependency.
-- **CalendarKit** provides composable SwiftUI building blocks such as
-  `WeekdayLabels`, `DaysOfMonthGrid`, and `DefaultDayView`.
-- **CalendarUI** is reserved for higher-level, opinionated calendar experiences
-  built from CalendarKit. It does not currently expose a public view.
-
-Use `CalendarExtensions` for calendar-domain logic or import both
-`CalendarExtensions` and `CalendarKit` when building a custom interface.
+Browse the [complete documentation](https://nicholasmata.github.io/CalendarKit/documentation/)
+for API references and guides covering all three package modules.
 
 ## Requirements
 
@@ -120,18 +103,21 @@ struct MonthExample: View {
 complete weeks. Those cells have `day.ignored == true`, allowing you to hide,
 dim, or disable them according to your interface's selection rules.
 
-## Building the Documentation
+## Package Structure
 
-Generate the combined DocC archive and static site locally:
+The package is organized into three layers:
 
-```sh
-DOCC_HOSTING_BASE_PATH="" zsh ./docs/build-docc-site.sh
-python3 -m http.server 8080 --directory .build/docc/site
-```
+- **CalendarExtensions** provides Foundation-only period models, calendar math,
+  and date utilities. It has no SwiftUI dependency.
+- **CalendarKit** provides composable SwiftUI building blocks such as
+  `WeekdayLabels`, `DaysOfMonthGrid`, and `DefaultDayView`.
+- **CalendarUI** is reserved for higher-level, opinionated calendar experiences
+  built from CalendarKit. It does not currently expose a public view.
 
-Open <http://localhost:8080/documentation/>. More details are available in
-[docs/README.md](docs/README.md).
+Use `CalendarExtensions` for calendar-domain logic or import both
+`CalendarExtensions` and `CalendarKit` when building a custom interface.
 
-The [Deploy DocC workflow](.github/workflows/deploy-docc.yml) publishes the
-same merged site to GitHub Pages when documentation-related files change on
-`main`.
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for local
+development, testing, documentation, and commit-message guidelines.
