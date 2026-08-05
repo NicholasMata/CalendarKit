@@ -1,42 +1,118 @@
 # CalendarKit
 
-CalendarKit is a layered Swift package for building calendar experiences on Apple platforms.
+CalendarKit is a layered Swift package for building calendar experiences on
+Apple platforms. It separates calendar-aware date modeling from SwiftUI layout
+so you can use the Foundation utilities on their own or compose a custom
+calendar interface from reusable views.
 
-## Package Structure
+CalendarKit currently provides:
 
-The project is split into three libraries:
-
-- `CalendarExtensions`
-  Foundation-first calendar models and utilities with no SwiftUI dependency.
-- `CalendarKit`
-  Composable SwiftUI building blocks for creating custom calendar interfaces.
-- `CalendarUI`
-  Higher-level, opinionated SwiftUI calendar views built on top of `CalendarKit`.
+- Calendar-aware day, week, and month values
+- Period navigation and month-grid calculations that respect the configured
+  calendar
+- Localized weekday labels ordered by `Calendar.firstWeekday`
+- A generic seven-column SwiftUI month grid
+- Default selectable day cells and month-grid layout helpers
+- A modifier for collapsing a month grid toward a selected week
 
 ## Documentation
 
-DocC catalogs are included for all three libraries and are published as one merged documentation site.
+Browse the complete API reference and guides on the
+[CalendarKit documentation site](https://nicholasmata.github.io/CalendarKit/documentation/).
+The site combines all three package modules into one searchable DocC archive.
 
-To build the static documentation site locally:
+## Package Structure
 
-```sh
-zsh ./docs/build-docc-site.sh
+The package is organized into three layers:
+
+- **CalendarExtensions** provides Foundation-only period models, calendar math,
+  and date utilities. It has no SwiftUI dependency.
+- **CalendarKit** provides composable SwiftUI building blocks such as
+  `WeekdayLabels`, `DaysOfMonthGrid`, and `DefaultDayView`.
+- **CalendarUI** is reserved for higher-level, opinionated calendar experiences
+  built from CalendarKit. It does not currently expose a public view.
+
+Use `CalendarExtensions` for calendar-domain logic or import both
+`CalendarExtensions` and `CalendarKit` when building a custom interface.
+
+## Requirements
+
+- Swift 6.0 or later
+- iOS 17 or later
+- macOS 15 or later
+
+## Installation
+
+In Xcode:
+
+1. Open your app project.
+2. Choose **File → Add Package Dependencies**.
+3. Enter the repository URL:
+
+   ```text
+   https://github.com/NicholasMata/CalendarKit.git
+   ```
+
+4. Set the dependency rule to **Branch** and enter `main`. The package does not
+   publish tagged releases yet.
+5. Add `CalendarKit` and `CalendarExtensions` to your app target.
+
+Import `CalendarKit` for the SwiftUI components and `CalendarExtensions` for
+calendar period values and utilities. `CalendarUI` currently has no public
+views, so most apps do not need to add that product yet.
+
+## Quick Start
+
+Create a calendar month and provide the content for each visible day:
+
+```swift
+import CalendarExtensions
+import CalendarKit
+import SwiftUI
+
+struct MonthExample: View {
+  @State private var selectedDate: Date?
+
+  private let calendar = Calendar.current
+
+  var body: some View {
+    let month = CalendarMonth(containing: .now, calendar: calendar)
+
+    VStack(spacing: 16) {
+      WeekdayLabels(using: calendar)
+
+      DaysOfMonthGrid(month: month) { day in
+        DefaultDayView(
+          day: day,
+          selectedDate: selectedDate,
+          calendar: calendar
+        )
+        .onTapGesture {
+          selectedDate = day.date
+        }
+        .allowsHitTesting(!day.ignored)
+      }
+    }
+  }
+}
 ```
 
-Then open:
+`DaysOfMonthGrid` includes the leading and trailing dates needed to render
+complete weeks. Those cells have `day.ignored == true`, allowing you to hide,
+dim, or disable them according to your interface's selection rules.
+
+## Building the Documentation
+
+Generate the combined DocC archive and static site locally:
 
 ```sh
-open .build/docc/site/index.html
+DOCC_HOSTING_BASE_PATH="" zsh ./docs/build-docc-site.sh
+python3 -m http.server 8080 --directory .build/docc/site
 ```
 
-Additional documentation build details live in [docs/README.md](docs/README.md).
+Open <http://localhost:8080/documentation/>. More details are available in
+[docs/README.md](docs/README.md).
 
-## GitHub Pages
-
-The repository includes a GitHub Actions workflow that builds and deploys the DocC site to GitHub Pages.
-
-Workflow file:
-
-- [`.github/workflows/deploy-docc.yml`](.github/workflows/deploy-docc.yml)
-
-To enable deployment, configure the repository's Pages source to use **GitHub Actions**.
+The [Deploy DocC workflow](.github/workflows/deploy-docc.yml) publishes the
+same merged site to GitHub Pages when documentation-related files change on
+`main`.
