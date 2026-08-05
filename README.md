@@ -83,16 +83,15 @@ struct MonthExample: View {
     VStack(spacing: 16) {
       WeekdayLabels(using: calendar)
 
-      DaysOfMonthGrid(month: month) { day in
+      DaysOfMonthGrid(month: month) { cell in
         DefaultDayView(
-          day: day,
-          selectedDate: selectedDate,
-          calendar: calendar
+          cell: cell,
+          selectedDate: selectedDate
         )
         .onTapGesture {
-          selectedDate = day.date
+          selectedDate = cell.id
         }
-        .allowsHitTesting(!day.ignored)
+        .allowsHitTesting(!cell.isOutsideMonth)
       }
     }
   }
@@ -100,8 +99,8 @@ struct MonthExample: View {
 ```
 
 `DaysOfMonthGrid` includes the leading and trailing dates needed to render
-complete weeks. Those cells have `day.ignored == true`, allowing you to hide,
-dim, or disable them according to your interface's selection rules.
+complete weeks. Those cells have `cell.isOutsideMonth == true`, allowing you to
+hide, dim, or disable them according to your interface's selection rules.
 
 ## Package Structure
 

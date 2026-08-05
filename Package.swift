@@ -42,7 +42,7 @@ let package = Package(
     ),
     .testTarget(
       name: "CalendarKitTests",
-      dependencies: ["CalendarKit"]
+      dependencies: ["CalendarExtensions", "CalendarKit"]
     ),
   ]
 )

@@ -47,12 +47,12 @@ import SwiftUI
             .disabled(month.id == lastMonth.id)
           }
           WeekdayLabels()
-          DaysOfMonthGrid(month: month) { day in
-            DefaultMonthGridDayView(day: day, selectedDate: selectedDate)
+          DaysOfMonthGrid(month: month) { cell in
+            DefaultMonthGridDayView(day: cell, selectedDate: selectedDate)
               .onTapGesture {
-                selectedDate = day.date
+                selectedDate = cell.id
               }
-              .allowsHitTesting(!day.ignored)
+              .allowsHitTesting(!cell.isOutsideMonth)
           }
           .frame(height: MonthGridUtil.height(for: month))
         }
@@ -65,16 +65,16 @@ import SwiftUI
 
 struct DefaultMonthGridDayView<DayView: View>: View {
   var content: DayView
-  var day: Day
+  var day: MonthGridDay
 
-  init(day: Day, content: () -> DayView) {
+  init(day: MonthGridDay, content: () -> DayView) {
     self.day = day
     self.content = content()
   }
 
   var body: some View {
     Group {
-      if day.ignored {
+      if day.isOutsideMonth {
         Rectangle().fill(.clear)
       } else {
         content
@@ -83,10 +83,10 @@ struct DefaultMonthGridDayView<DayView: View>: View {
   }
 }
 
-extension DefaultMonthGridDayView where DayView == DefaultDayView {
-  init(day: Day, selectedDate: Date?, calendar: Calendar = .current) {
+extension DefaultMonthGridDayView where DayView == DefaultDayView<Text> {
+  init(day: MonthGridDay, selectedDate: Date?) {
     self.init(day: day) {
-      DefaultDayView(day: day, selectedDate: selectedDate, calendar: calendar)
+      DefaultDayView(cell: day, selectedDate: selectedDate)
     }
   }
 }

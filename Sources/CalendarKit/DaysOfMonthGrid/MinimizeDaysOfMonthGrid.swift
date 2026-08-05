@@ -9,9 +9,10 @@ import SwiftUI
 
 /// A view modifier that vertically collapses a month grid toward a selected week row.
 public struct MinimizeDaysOfMonthGrid: ViewModifier {
+  @Environment(\.monthGridDayHeight) private var dayHeight
+
   var progress: CGFloat
   var weekInMonth: Int
-  var dayHeight: CGFloat
   @State private var size: CGSize = .zero
 
   /// Creates a modifier that reduces a month grid toward a single visible week.
@@ -19,11 +20,9 @@ public struct MinimizeDaysOfMonthGrid: ViewModifier {
   /// - Parameters:
   ///   - progress: A value between `0` and `1` describing the collapse progress.
   ///   - weekInMonth: The zero-based week row to keep visible as the grid collapses.
-  ///   - dayHeight: The height of an individual day row.
-  public init(progress: CGFloat, weekInMonth: Int, dayHeight: CGFloat = DefaultDayView.height) {
+  public init(progress: CGFloat, weekInMonth: Int) {
     self.progress = progress
     self.weekInMonth = weekInMonth
-    self.dayHeight = dayHeight
   }
 
   /// Returns the modified content with the collapsing month-grid effect applied.
@@ -48,14 +47,12 @@ public extension View {
   /// Collapses a month grid toward a single visible week row.
   func minimizeMonthGrid(
     progress: CGFloat,
-    toWeek weekInMonth: Int = 0,
-    usingDayHeight dayHeight: CGFloat = DefaultDayView.height
+    toWeek weekInMonth: Int = 0
   ) -> some View {
     modifier(
       MinimizeDaysOfMonthGrid(
         progress: progress,
-        weekInMonth: weekInMonth,
-        dayHeight: dayHeight
+        weekInMonth: weekInMonth
       )
     )
   }

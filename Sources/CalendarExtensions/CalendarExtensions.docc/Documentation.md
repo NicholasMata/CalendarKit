@@ -60,7 +60,6 @@ let visibleWeeks = month.numberOfWeeks
 - ``CalendarMonth``
 - ``CalendarWeek``
 - ``CalendarDay``
-- ``Day``
 
 #### Calendar Utilities
 

@@ -14,7 +14,7 @@ public enum MonthGridUtil {
   @MainActor
   public static func height(
     for dayInMonth: Date,
-    using dayHeight: CGFloat = DefaultDayView.height,
+    using dayHeight: CGFloat = MonthGridLayout.defaultDayHeight,
     calendar: Calendar = Calendar.current
   ) -> CGFloat {
       return height(for: CalendarMonth(containing: dayInMonth, calendar: calendar), using: dayHeight)
@@ -24,7 +24,7 @@ public enum MonthGridUtil {
   @MainActor
   public static func height(
     for month: CalendarMonth,
-    using dayHeight: CGFloat = DefaultDayView.height,
+    using dayHeight: CGFloat = MonthGridLayout.defaultDayHeight,
   ) -> CGFloat {
     return CGFloat(month.numberOfWeeks) * dayHeight
   }
@@ -35,12 +35,14 @@ public enum MonthGridUtil {
 /// `DaysOfMonthGrid` includes leading and trailing days from adjacent months when needed
 /// to fill the first and last visible week rows.
 public struct DaysOfMonthGrid<DayView: View>: View {
+  @Environment(\.monthGridDayHeight) private var dayHeight
+
   private var month: CalendarMonth
   private var startOfMonthGrid: CalendarDay
   private var endOfMonthGrid: CalendarDay
 
   @ViewBuilder
-  private var dayBuilder: (Day) -> DayView
+  private var dayBuilder: (MonthGridDay) -> DayView
 
   private var columns = Array(repeating: GridItem(spacing: 0), count: 7)
 
@@ -48,7 +50,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
   public init(
     dayInMonth: Date,
     calendar: Calendar = .current,
-    dayContent: @escaping (Day) -> DayView
+    dayContent: @escaping (MonthGridDay) -> DayView
   ) {
     let month = calendar.month(from: dayInMonth)
     self.init(month: month, dayContent: dayContent)
@@ -57,7 +59,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
   /// Creates a month grid for a resolved calendar month value.
   public init(
     month: CalendarMonth,
-    dayContent: @escaping (Day) -> DayView
+    dayContent: @escaping (MonthGridDay) -> DayView
   ) {
     self.month = month
     startOfMonthGrid = month.firstWeek.firstDay
@@ -70,7 +72,7 @@ public struct DaysOfMonthGrid<DayView: View>: View {
     month: Int,
     year: Int,
     calendar: Calendar = .current,
-    dayContent: @escaping (Day) -> DayView
+    dayContent: @escaping (MonthGridDay) -> DayView
   ) {
     self.init(
       month: CalendarMonth(month, year: year, calendar: calendar),
@@ -82,9 +84,8 @@ public struct DaysOfMonthGrid<DayView: View>: View {
   public var body: some View {
     LazyVGrid(columns: columns, spacing: 0) {
       ForEach(startOfMonthGrid ... endOfMonthGrid) { day in
-        dayBuilder(
-          Day(day: day, month: month)
-        )
+        dayBuilder(MonthGridDay(day: day, month: month))
+          .frame(height: dayHeight)
       }
     }
   }
@@ -146,10 +147,14 @@ public struct DaysOfMonthGrid<DayView: View>: View {
     .padding()
     VStack {
       Text("Above")
-      DaysOfMonthGrid(month: month) { day in
-        DefaultDayView(day: day, selectedDate: selectedDate, calendar: calendar)
+      DaysOfMonthGrid(month: month) { cell in
+        DefaultDayView(cell: cell, selectedDate: selectedDate)
           .onTapGesture {
-            selectedDate = day.date
+            if selectedDate == cell.id {
+              selectedDate = nil
+            } else {
+              selectedDate = cell.id
+            }
           }
       }
       .background {
@@ -164,4 +169,32 @@ public struct DaysOfMonthGrid<DayView: View>: View {
     .tint(.red)
     .frame(maxHeight: .infinity)
   }
+}
+
+@available(iOS 17.0, macOS 14.0, *)
+#Preview("Multiple Day Selection") {
+  @Previewable @State var selectedDays: Set<CalendarDay.ID> = []
+  let calendar = Calendar.current
+  let month = CalendarMonth(containing: .now, calendar: calendar)
+
+  VStack(spacing: 16) {
+    WeekdayLabels(using: calendar)
+
+    DaysOfMonthGrid(month: month) { cell in
+      DefaultDayView(
+        cell: cell,
+        isSelected: selectedDays.contains(cell.id)
+      )
+      .onTapGesture {
+        if selectedDays.contains(cell.id) {
+          selectedDays.remove(cell.id)
+        } else {
+          selectedDays.insert(cell.id)
+        }
+      }
+      .allowsHitTesting(!cell.isOutsideMonth)
+    }
+  }
+  .monthGridDayHeight(48)
+  .padding()
 }

@@ -40,6 +40,8 @@ Use this package when you want:
 
 - ``WeekdayLabels``
 - ``DaysOfMonthGrid``
+- ``MonthGridDay``
 - ``DefaultDayView``
+- ``MonthGridLayout``
 - ``MonthGridUtil``
 - ``MinimizeDaysOfMonthGrid``

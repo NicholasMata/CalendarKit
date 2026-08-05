@@ -36,10 +36,10 @@ import SwiftUI
           ForEach(startMonth ... CalendarMonth(12, year: 2035)) { month in
             DaysOfMonthGrid(
               month: month
-            ) { day in
-              DefaultDayView(day: day, selectedDate: selectedDate)
+            ) { cell in
+              DefaultDayView(cell: cell, selectedDate: selectedDate)
                 .onTapGesture {
-                  selectedDate = day.date
+                  selectedDate = cell.id
                 }
             }
             .frame(width: proxy.size.width)

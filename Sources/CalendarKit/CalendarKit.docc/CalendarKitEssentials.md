@@ -19,14 +19,15 @@ A common month view composition looks like this:
 ```swift
 VStack(spacing: 16) {
   WeekdayLabels(using: calendar)
-  DaysOfMonthGrid(month: month) { day in
-    DefaultDayView(day: day, selectedDate: selectedDate, calendar: calendar)
+  DaysOfMonthGrid(month: month) { cell in
+    DefaultDayView(cell: cell, selectedDate: selectedDate)
   }
 }
 ```
 
-`DaysOfMonthGrid` supplies a `Day` for every visible cell, including overflow
-days from adjacent months. Use `day.ignored` to style or disable those cells.
+`DaysOfMonthGrid` supplies a ``MonthGridDay`` for every visible cell, including
+overflow days from adjacent months. Use `cell.isOutsideMonth` to style or
+disable those cells.
 
 ## Adding Selection
 
@@ -35,21 +36,50 @@ Keep selection state in the containing view and update it from each day cell:
 ```swift
 @State private var selectedDate: Date?
 
-DaysOfMonthGrid(month: month) { day in
+DaysOfMonthGrid(month: month) { cell in
   DefaultDayView(
-    day: day,
-    selectedDate: selectedDate,
-    calendar: month.calendar
+    cell: cell,
+    selectedDate: selectedDate
   )
   .onTapGesture {
-    selectedDate = day.date
+    selectedDate = cell.id
   }
-  .allowsHitTesting(!day.ignored)
+  .allowsHitTesting(!cell.isOutsideMonth)
 }
 ```
 
 The grid owns layout, while your container owns interaction and state. This
 keeps custom selection rules and accessibility behavior under your control.
+
+### Selecting Multiple Days
+
+Store normalized day identifiers in a set and resolve selection before passing
+it to the day view:
+
+```swift
+@State private var selectedDays: Set<CalendarDay.ID> = []
+
+DaysOfMonthGrid(month: month) { cell in
+  let isSelected = selectedDays.contains(cell.id)
+
+  DefaultDayView(
+    cell: cell,
+    isSelected: isSelected
+  )
+  .onTapGesture {
+    if isSelected {
+      selectedDays.remove(cell.id)
+    } else {
+      selectedDays.insert(cell.id)
+    }
+  }
+  .allowsHitTesting(!cell.isOutsideMonth)
+}
+```
+
+For complete presentation control, initialize ``DefaultDayView`` with resolved
+`isToday`, `isSelected`, and `isDimmed` values and provide any SwiftUI view as
+its label.
 
 ## Relationship To CalendarUI
 
