@@ -11,6 +11,24 @@ import Testing
 
 let calendar = Calendar.current
 
+@Test func ordersWeekdaySymbolsFromConfiguredFirstWeekday() {
+  var calendar = Calendar(identifier: .gregorian)
+  calendar.firstWeekday = 2
+  let symbols = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+  #expect(calendar.orderedWeekdaySymbols(using: symbols) == [
+    "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+  ])
+}
+
+@Test func preservesWeekdaySymbolsForInvalidFirstWeekday() {
+  var calendar = Calendar(identifier: .gregorian)
+  calendar.firstWeekday = 8
+  let symbols = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+  #expect(calendar.orderedWeekdaySymbols(using: symbols) == symbols)
+}
+
 @Test(
   arguments: zip([
     Date(month: 1, year: 2025),

@@ -10,9 +10,7 @@ import SwiftUI
 
 /// A horizontal row of localized weekday labels ordered by the calendar's first weekday.
 public struct WeekdayLabels: View {
-  var calendar: Calendar
-  @State private var formattedWeekdaySymbols: [String]
-  var formatStyle: Date.FormatStyle.Symbol.Weekday
+  private let formattedWeekdaySymbols: [String]
 
   /// Creates a row of weekday labels.
   ///
@@ -23,10 +21,10 @@ public struct WeekdayLabels: View {
     style formatStyle: Date.FormatStyle.Symbol.Weekday = .abbreviated,
     using calendar: Calendar = .current
   ) {
-    self.calendar = calendar
-    self.formatStyle = formatStyle
-    let symbols = WeekdayLabels.weekdaySymbols(with: formatStyle, using: calendar)
-    self.formattedWeekdaySymbols = symbols
+    formattedWeekdaySymbols = Self.weekdaySymbols(
+      with: formatStyle,
+      using: calendar
+    )
   }
 
   /// The rendered weekday label row.
@@ -36,9 +34,6 @@ public struct WeekdayLabels: View {
         Text(weekdaySymbol)
           .frame(maxWidth: .infinity)
       }
-    }
-    .onChange(of: calendar.firstWeekday) { _ in
-      formattedWeekdaySymbols = WeekdayLabels.weekdaySymbols(with: formatStyle, using: calendar)
     }
   }
 
@@ -56,9 +51,11 @@ public struct WeekdayLabels: View {
         String($0.prefix(2))
       }
     case .oneDigit:
-      return (0...6).map { String($0) }
+      return calendar.orderedWeekdaySymbols(using: (1...7).map(String.init))
     case .twoDigits:
-      return (0...6).map { String(format: "%02d", $0) }
+      return calendar.orderedWeekdaySymbols(using: (1...7).map {
+        String(format: "%02d", $0)
+      })
     default:
       return calendar.orderedShortStandaloneWeekdaySymbols
     }
