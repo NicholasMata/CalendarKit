@@ -5,11 +5,14 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="$ROOT_DIR/.build/docc"
 SITE_DIR="$BUILD_DIR/site"
+COMBINED_ARCHIVE="$BUILD_DIR/CalendarKit.doccarchive"
 
-if [[ -n "${GITHUB_REPOSITORY:-}" ]]; then
-  REPOSITORY_NAME="${GITHUB_REPOSITORY#*/}"
+if [[ -v DOCC_HOSTING_BASE_PATH ]]; then
+  HOSTING_BASE_PATH="$DOCC_HOSTING_BASE_PATH"
+elif [[ -n "${GITHUB_REPOSITORY:-}" ]]; then
+  HOSTING_BASE_PATH="${GITHUB_REPOSITORY#*/}"
 else
-  REPOSITORY_NAME="$(basename "$ROOT_DIR")"
+  HOSTING_BASE_PATH="$(basename "$ROOT_DIR")"
 fi
 
 MODULES=(
@@ -19,16 +22,19 @@ MODULES=(
 )
 
 rm -rf "$BUILD_DIR"
-mkdir -p "$SITE_DIR"
+mkdir -p "$BUILD_DIR"
+
+ARCHIVES=()
 
 for MODULE in "${MODULES[@]}"; do
   DERIVED_DATA_PATH="$BUILD_DIR/derived-data/$MODULE"
-  OUTPUT_PATH="$SITE_DIR/$MODULE"
 
   xcodebuild docbuild \
+    -quiet \
     -scheme "$MODULE" \
     -derivedDataPath "$DERIVED_DATA_PATH" \
-    -destination 'generic/platform=iOS'
+    -destination 'generic/platform=iOS' \
+    OTHER_DOCC_FLAGS="--warnings-as-errors"
 
   ARCHIVE_PATH="$(find "$DERIVED_DATA_PATH" -type d -name "$MODULE.doccarchive" -print -quit)"
 
@@ -37,126 +43,25 @@ for MODULE in "${MODULES[@]}"; do
     exit 1
   fi
 
-  xcrun docc process-archive transform-for-static-hosting \
-    "$ARCHIVE_PATH" \
-    --output-path "$OUTPUT_PATH" \
-    --hosting-base-path "$REPOSITORY_NAME/$MODULE"
+  ARCHIVES+=("$ARCHIVE_PATH")
 done
 
-cat > "$SITE_DIR/index.html" <<EOF
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CalendarKit Documentation</title>
-  <style>
-    :root {
-      color-scheme: light dark;
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --text: #111827;
-      --muted: #4b5563;
-      --border: #d1d5db;
-      --link: #0f62fe;
-    }
+xcrun docc merge \
+  "${ARCHIVES[@]}" \
+  --output-path "$COMBINED_ARCHIVE" \
+  --synthesized-landing-page-name "CalendarKit" \
+  --synthesized-landing-page-kind "Package" \
+  --synthesized-landing-page-topics-style detailedGrid
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #111827;
-        --card: #1f2937;
-        --text: #f9fafb;
-        --muted: #cbd5e1;
-        --border: #374151;
-        --link: #93c5fd;
-      }
-    }
+HOSTING_ARGUMENTS=()
+if [[ -n "$HOSTING_BASE_PATH" ]]; then
+  HOSTING_ARGUMENTS=(--hosting-base-path "$HOSTING_BASE_PATH")
+fi
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 48px 20px 64px;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: 2.5rem;
-      line-height: 1.1;
-    }
-
-    p {
-      margin: 0 0 20px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-
-    ul {
-      list-style: none;
-      margin: 32px 0 0;
-      padding: 0;
-      display: grid;
-      gap: 16px;
-    }
-
-    a {
-      display: block;
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--card);
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    a strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--link);
-      font-size: 1.1rem;
-    }
-
-    a span {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>CalendarKit Documentation</h1>
-    <p>Browse the DocC documentation for the Foundation layer, the SwiftUI building blocks, and the higher-level UI package.</p>
-    <ul>
-      <li>
-        <a href="./CalendarExtensions/documentation/calendarextensions/">
-          <strong>CalendarExtensions</strong>
-          <span>Foundation-first period models, calendar math, and date utilities.</span>
-        </a>
-      </li>
-      <li>
-        <a href="./CalendarKit/documentation/calendarkit/">
-          <strong>CalendarKit</strong>
-          <span>Composable SwiftUI building blocks for custom calendar interfaces.</span>
-        </a>
-      </li>
-      <li>
-        <a href="./CalendarUI/documentation/calendarui/">
-          <strong>CalendarUI</strong>
-          <span>Opinionated UI built on top of CalendarKit.</span>
-        </a>
-      </li>
-    </ul>
-  </main>
-</body>
-</html>
-EOF
+xcrun docc process-archive transform-for-static-hosting \
+  "$COMBINED_ARCHIVE" \
+  --output-path "$SITE_DIR" \
+  "${HOSTING_ARGUMENTS[@]}"
 
 touch "$SITE_DIR/.nojekyll"
 
