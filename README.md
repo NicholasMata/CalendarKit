@@ -113,7 +113,7 @@ In Xcode:
    https://github.com/NicholasMata/CalendarKit.git
    ```
 
-4. Set the dependency rule to **Exact Version** and enter `0.1.0-alpha.1`.
+4. Set the dependency rule to **Exact Version** and enter `0.1.0-alpha.2`.
    This is an alpha release, so APIs may change before the first stable release.
 5. Add `CalendarKit` and `CalendarExtensions` to your app target.
 
