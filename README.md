@@ -37,6 +37,64 @@ CalendarKit currently provides:
 Browse the [complete documentation](https://nicholasmata.github.io/CalendarKit/documentation/)
 for API references and guides covering all three package modules.
 
+## Example App
+
+Explore the [SwiftUI example app](Example/README.md) to see CalendarKit's
+components and common interactions in context.
+
+<table>
+  <thead>
+    <tr>
+      <th>Single Selection</th>
+      <th>Multiple Selection</th>
+      <th>Range Selection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="docs/media/single-selection-dark.gif"
+          >
+          <img
+            src="docs/media/single-selection-light.gif"
+            alt="Selecting a single day in CalendarKit"
+            width="220"
+          >
+        </picture>
+      </td>
+      <td>
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="docs/media/multiple-selection-dark.gif"
+          >
+          <img
+            src="docs/media/multiple-selection-light.gif"
+            alt="Selecting multiple days in CalendarKit"
+            width="220"
+          >
+        </picture>
+      </td>
+      <td>
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="docs/media/range-selection-dark.gif"
+          >
+          <img
+            src="docs/media/range-selection-light.gif"
+            alt="Selecting a range of days in CalendarKit"
+            width="220"
+          >
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Requirements
 
 - Swift 6.0 or later
