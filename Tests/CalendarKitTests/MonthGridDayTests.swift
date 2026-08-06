@@ -37,6 +37,6 @@ func generatesEveryVisibleDayInSixWeekMonthGrid() {
     first.calendarDay.distance(to: second.calendarDay) == 1
   })
   #expect(days.allSatisfy {
-    $0.isOutsideMonth == (CalendarMonth.ID(day: $0.calendarDay) != month.id)
+    $0.isOutsideMonth == (CalendarMonth.ID(containing: $0.calendarDay) != month.id)
   })
 }

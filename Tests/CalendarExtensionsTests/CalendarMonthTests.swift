@@ -3,6 +3,18 @@ import Testing
 @testable import CalendarExtensions
 
 @Test
+func derivesContainingMonthFromDay() {
+  let calendar = testGregorianCalendar(firstWeekday: 2)
+  let expectedMonth = CalendarMonth(8, year: 2026, calendar: calendar)
+  let day = expectedMonth.firstDay.advanced(by: 14)
+
+  let month = CalendarMonth(containing: day)
+
+  #expect(month == expectedMonth)
+  #expect(month.calendar == calendar)
+}
+
+@Test
 func findsVisibleWeekIndexContainingDay() {
   let month = CalendarMonth(
     8,

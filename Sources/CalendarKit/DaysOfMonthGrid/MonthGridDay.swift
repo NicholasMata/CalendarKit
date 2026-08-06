@@ -38,7 +38,7 @@ public struct MonthGridDay: Identifiable {
   public init(day: CalendarDay, month: CalendarMonth) {
     self.init(
       day: day,
-      isOutsideMonth: CalendarMonth.ID(day: day) != month.id
+      isOutsideMonth: CalendarMonth.ID(containing: day) != month.id
     )
   }
 

@@ -26,7 +26,7 @@ public struct CalendarMonth: Strideable, Comparable, Hashable, Identifiable {
     }
 
     /// Creates a month identifier from a calendar day.
-    public init(day: CalendarDay) {
+    public init(containing day: CalendarDay) {
       self.init(monthNumber: day.monthNumber, year: day.year)
     }
 
@@ -89,6 +89,11 @@ public struct CalendarMonth: Strideable, Comparable, Hashable, Identifiable {
   /// Creates a month value from month and year components.
   public init(_ month: Int, year: Int, calendar: Calendar = Calendar.current) {
     self.init(containing: .init(month: month, year: year, calendar: calendar), calendar: calendar)
+  }
+
+  /// Creates a month value containing the supplied calendar day.
+  public init(containing day: CalendarDay) {
+    self.init(containing: day.date, calendar: day.calendar)
   }
 
   /// Creates a month value for the month containing the supplied date.
