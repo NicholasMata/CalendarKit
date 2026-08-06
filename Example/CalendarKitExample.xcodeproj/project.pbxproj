@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* CalendarKitExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* CalendarKitExampleApp.swift */; };
+		100000000000000000000002 /* ExampleCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* ExampleCatalogView.swift */; };
+		100000000000000000000003 /* SampleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* SampleCalendar.swift */; };
+		100000000000000000000004 /* SingleSelectionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000004 /* SingleSelectionExample.swift */; };
+		100000000000000000000005 /* MultipleSelectionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* MultipleSelectionExample.swift */; };
+		100000000000000000000006 /* CollapsibleMonthGridExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* CollapsibleMonthGridExample.swift */; };
+		100000000000000000000007 /* WeekdayLabelsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000007 /* WeekdayLabelsExample.swift */; };
+		100000000000000000000008 /* CalendarExampleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000008 /* CalendarExampleContainer.swift */; };
+		100000000000000000000009 /* CalendarKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* CalendarKitExampleUITests.swift */; };
+		10000000000000000000000A /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = A00000000000000000000002 /* CalendarKit */; };
+		10000000000000000000000B /* CalendarExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A00000000000000000000003 /* CalendarExtensions */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		300000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 700000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 800000000000000000000001;
+			remoteInfo = CalendarKitExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		200000000000000000000001 /* CalendarKitExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarKitExampleApp.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* ExampleCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCatalogView.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* SampleCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCalendar.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* SingleSelectionExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectionExample.swift; sourceTree = "<group>"; };
+		200000000000000000000005 /* MultipleSelectionExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionExample.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* CollapsibleMonthGridExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleMonthGridExample.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* WeekdayLabelsExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayLabelsExample.swift; sourceTree = "<group>"; };
+		200000000000000000000008 /* CalendarExampleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleContainer.swift; sourceTree = "<group>"; };
+		200000000000000000000009 /* CalendarKitExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarKitExampleUITests.swift; sourceTree = "<group>"; };
+		20000000000000000000000A /* CalendarKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20000000000000000000000B /* CalendarKitExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarKitExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		400000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10000000000000000000000A /* CalendarKit in Frameworks */,
+				10000000000000000000000B /* CalendarExtensions in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		400000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		500000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				500000000000000000000002 /* CalendarKitExample */,
+				500000000000000000000003 /* CalendarKitExampleUITests */,
+				500000000000000000000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		500000000000000000000002 /* CalendarKitExample */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000001 /* CalendarKitExampleApp.swift */,
+				200000000000000000000002 /* ExampleCatalogView.swift */,
+				200000000000000000000008 /* CalendarExampleContainer.swift */,
+				200000000000000000000003 /* SampleCalendar.swift */,
+				200000000000000000000004 /* SingleSelectionExample.swift */,
+				200000000000000000000005 /* MultipleSelectionExample.swift */,
+				200000000000000000000006 /* CollapsibleMonthGridExample.swift */,
+				200000000000000000000007 /* WeekdayLabelsExample.swift */,
+			);
+			path = CalendarKitExample;
+			sourceTree = "<group>";
+		};
+		500000000000000000000003 /* CalendarKitExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000009 /* CalendarKitExampleUITests.swift */,
+			);
+			path = CalendarKitExampleUITests;
+			sourceTree = "<group>";
+		};
+		500000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000000A /* CalendarKitExample.app */,
+				20000000000000000000000B /* CalendarKitExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		800000000000000000000001 /* CalendarKitExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 900000000000000000000001 /* Build configuration list for PBXNativeTarget "CalendarKitExample" */;
+			buildPhases = (
+				600000000000000000000001 /* Sources */,
+				400000000000000000000001 /* Frameworks */,
+				600000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalendarKitExample;
+			packageProductDependencies = (
+				A00000000000000000000002 /* CalendarKit */,
+				A00000000000000000000003 /* CalendarExtensions */,
+			);
+			productName = CalendarKitExample;
+			productReference = 20000000000000000000000A /* CalendarKitExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		800000000000000000000002 /* CalendarKitExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 900000000000000000000002 /* Build configuration list for PBXNativeTarget "CalendarKitExampleUITests" */;
+			buildPhases = (
+				600000000000000000000002 /* Sources */,
+				400000000000000000000002 /* Frameworks */,
+				600000000000000000000004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B00000000000000000000001 /* PBXTargetDependency */,
+			);
+			name = CalendarKitExampleUITests;
+			productName = CalendarKitExampleUITests;
+			productReference = 20000000000000000000000B /* CalendarKitExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		700000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					800000000000000000000001 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					800000000000000000000002 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 800000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = 900000000000000000000003 /* Build configuration list for PBXProject "CalendarKitExample" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 500000000000000000000001;
+			packageReferences = (
+				A00000000000000000000001 /* XCLocalSwiftPackageReference ".." */,
+			);
+			productRefGroup = 500000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				800000000000000000000001 /* CalendarKitExample */,
+				800000000000000000000002 /* CalendarKitExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		600000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		600000000000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		600000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000001 /* CalendarKitExampleApp.swift in Sources */,
+				100000000000000000000002 /* ExampleCatalogView.swift in Sources */,
+				100000000000000000000003 /* SampleCalendar.swift in Sources */,
+				100000000000000000000004 /* SingleSelectionExample.swift in Sources */,
+				100000000000000000000005 /* MultipleSelectionExample.swift in Sources */,
+				100000000000000000000006 /* CollapsibleMonthGridExample.swift in Sources */,
+				100000000000000000000007 /* WeekdayLabelsExample.swift in Sources */,
+				100000000000000000000008 /* CalendarExampleContainer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		600000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000009 /* CalendarKitExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B00000000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 800000000000000000000001 /* CalendarKitExample */;
+			targetProxy = 300000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C00000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasmata.CalendarKitExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C00000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasmata.CalendarKitExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C00000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasmata.CalendarKitExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CalendarKitExample;
+			};
+			name = Debug;
+		};
+		C00000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicholasmata.CalendarKitExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CalendarKitExample;
+			};
+			name = Release;
+		};
+		C00000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C00000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		900000000000000000000001 /* Build configuration list for PBXNativeTarget "CalendarKitExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C00000000000000000000001 /* Debug */,
+				C00000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		900000000000000000000002 /* Build configuration list for PBXNativeTarget "CalendarKitExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C00000000000000000000003 /* Debug */,
+				C00000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		900000000000000000000003 /* Build configuration list for PBXProject "CalendarKitExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C00000000000000000000005 /* Debug */,
+				C00000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A00000000000000000000001 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A00000000000000000000002 /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00000000000000000000001 /* XCLocalSwiftPackageReference ".." */;
+			productName = CalendarKit;
+		};
+		A00000000000000000000003 /* CalendarExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A00000000000000000000001 /* XCLocalSwiftPackageReference ".." */;
+			productName = CalendarExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 700000000000000000000001 /* Project object */;
+}
