@@ -6,6 +6,7 @@ The root screen is a scrollable `LazyVStack` containing links to each example:
 
 - Single-day selection
 - Multiple-day selection
+- Range selection with individual and continuous styles
 - A collapsible month grid
 - Weekday label formats
 

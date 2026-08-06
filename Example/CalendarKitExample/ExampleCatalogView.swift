@@ -24,6 +24,15 @@ struct ExampleCatalogView: View {
           }
 
           ExampleLink(
+            title: "Range Selection",
+            description: "Choose individual or continuously connected range styling.",
+            systemImage: "calendar.badge.clock",
+            accessibilityIdentifier: "range-selection-example"
+          ) {
+            RangeSelectionExample()
+          }
+
+          ExampleLink(
             title: "Collapsible Month Grid",
             description: "Collapse a month toward a selected week.",
             systemImage: "rectangle.compress.vertical",

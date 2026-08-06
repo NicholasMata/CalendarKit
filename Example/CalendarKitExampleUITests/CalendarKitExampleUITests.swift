@@ -14,6 +14,7 @@ final class CalendarKitExampleUITests: XCTestCase {
     XCTAssertTrue(app.navigationBars["CalendarKit Examples"].exists)
     XCTAssertTrue(app.buttons["single-selection-example"].exists)
     XCTAssertTrue(app.buttons["multiple-selection-example"].exists)
+    XCTAssertTrue(app.buttons["range-selection-example"].exists)
     XCTAssertTrue(app.buttons["collapsible-grid-example"].exists)
     XCTAssertTrue(app.buttons["weekday-labels-example"].exists)
   }
@@ -46,6 +47,32 @@ final class CalendarKitExampleUITests: XCTestCase {
 
     XCTAssertEqual(existingDay.value as? String, "Selected")
     XCTAssertEqual(additionalDay.value as? String, "Selected")
+  }
+
+  func testSelectingRangeInEitherDirection() {
+    app.launch()
+
+    let example = app.buttons["range-selection-example"]
+    if !example.isHittable {
+      app.swipeUp()
+    }
+    example.tap()
+
+    let laterDay = app.buttons["range-day-2026-08-25"]
+    let earlierDay = app.buttons["range-day-2026-08-20"]
+    laterDay.tap()
+    earlierDay.tap()
+
+    XCTAssertEqual(earlierDay.value as? String, "Selected")
+    XCTAssertEqual(laterDay.value as? String, "Selected")
+    XCTAssertEqual(
+      app.buttons["range-day-2026-08-05"].value as? String,
+      "Not selected"
+    )
+
+    let stylePicker = app.segmentedControls["range-style-picker"]
+    XCTAssertTrue(stylePicker.buttons["Continuous"].exists)
+    XCTAssertTrue(stylePicker.buttons["Individual"].exists)
   }
 
   func testCollapsingMonthGridKeepsSelectedWeekVisible() {

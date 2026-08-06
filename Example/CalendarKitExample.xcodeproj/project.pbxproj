@@ -18,6 +18,7 @@
 		100000000000000000000009 /* CalendarKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* CalendarKitExampleUITests.swift */; };
 		10000000000000000000000A /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = A00000000000000000000002 /* CalendarKit */; };
 		10000000000000000000000B /* CalendarExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A00000000000000000000003 /* CalendarExtensions */; };
+		10000000000000000000000C /* RangeSelectionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* RangeSelectionExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		200000000000000000000009 /* CalendarKitExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarKitExampleUITests.swift; sourceTree = "<group>"; };
 		20000000000000000000000A /* CalendarKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20000000000000000000000B /* CalendarKitExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarKitExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20000000000000000000000C /* RangeSelectionExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSelectionExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				200000000000000000000003 /* SampleCalendar.swift */,
 				200000000000000000000004 /* SingleSelectionExample.swift */,
 				200000000000000000000005 /* MultipleSelectionExample.swift */,
+				20000000000000000000000C /* RangeSelectionExample.swift */,
 				200000000000000000000006 /* CollapsibleMonthGridExample.swift */,
 				200000000000000000000007 /* WeekdayLabelsExample.swift */,
 			);
@@ -215,6 +218,7 @@
 				100000000000000000000003 /* SampleCalendar.swift in Sources */,
 				100000000000000000000004 /* SingleSelectionExample.swift in Sources */,
 				100000000000000000000005 /* MultipleSelectionExample.swift in Sources */,
+				10000000000000000000000C /* RangeSelectionExample.swift in Sources */,
 				100000000000000000000006 /* CollapsibleMonthGridExample.swift in Sources */,
 				100000000000000000000007 /* WeekdayLabelsExample.swift in Sources */,
 				100000000000000000000008 /* CalendarExampleContainer.swift in Sources */,
