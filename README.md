@@ -37,7 +37,7 @@ CalendarKit currently provides:
 Browse the [complete documentation](https://nicholasmata.github.io/CalendarKit/documentation/)
 for API references and guides covering all three package modules.
 
-## Example App
+## Examples
 
 Explore the [SwiftUI example app](Example/README.md) to see CalendarKit's
 components and common interactions in context.
