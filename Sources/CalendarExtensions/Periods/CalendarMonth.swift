@@ -137,6 +137,22 @@ public struct CalendarMonth: Strideable, Comparable, Hashable, Identifiable {
     return calendar.dateComponents([.month], from: startDate, to: other.startDate).month ?? 0
   }
 
+  /// Returns the zero-based visible week-row index containing the supplied day.
+  ///
+  /// Leading and trailing days from adjacent months return an index when they appear
+  /// in this month's visible grid. Days outside the visible grid return `nil`.
+  ///
+  /// - Parameter day: The day whose visible week-row index to find.
+  public func weekIndex(containing day: CalendarDay) -> Int? {
+    let week = CalendarWeek(containing: day.date, calendar: calendar)
+
+    guard firstWeek <= week, week <= lastWeek else {
+      return nil
+    }
+
+    return firstWeek.distance(to: week)
+  }
+
   /// Compares two month values by their normalized start dates.
   public static func < (lhs: CalendarMonth, rhs: CalendarMonth) -> Bool {
     return lhs.startDate < rhs.startDate

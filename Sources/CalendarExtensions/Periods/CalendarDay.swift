@@ -29,6 +29,11 @@ public struct CalendarDay: Strideable, Comparable, Hashable, Identifiable {
   /// The calendar used to derive this day value.
   public let calendar: Calendar
 
+  /// The calendar week containing this day.
+  public var week: CalendarWeek {
+    CalendarWeek(containing: self)
+  }
+
   /// Creates a day value for the day containing the provided date.
   ///
   /// - Parameters:
