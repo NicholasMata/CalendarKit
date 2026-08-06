@@ -12,7 +12,7 @@ struct CollapsibleMonthGridExample: View {
 
   var body: some View {
     CalendarExampleContainer(
-      title: "August 2026",
+      title: SampleCalendar.monthTitle,
       subtitle: "Select a day, then collapse the month to its week."
     ) {
       Picker("Grid state", selection: $progress) {

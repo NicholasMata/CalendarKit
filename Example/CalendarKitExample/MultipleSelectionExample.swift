@@ -4,14 +4,14 @@ import SwiftUI
 
 struct MultipleSelectionExample: View {
   @State private var selectedDays: Set<CalendarDay.ID> = [
-    SampleCalendar.month.firstDay.advanced(by: 4).id,
-    SampleCalendar.month.firstDay.advanced(by: 5).id,
-    SampleCalendar.month.firstDay.advanced(by: 6).id,
+    SampleCalendar.month.firstDay.advanced(by: 16).id,
+    SampleCalendar.month.firstDay.advanced(by: 17).id,
+    SampleCalendar.month.firstDay.advanced(by: 18).id,
   ]
 
   var body: some View {
     CalendarExampleContainer(
-      title: "August 2026",
+      title: SampleCalendar.monthTitle,
       subtitle: "Each day toggles independently using CalendarDay.ID."
     ) {
       WeekdayLabels(using: SampleCalendar.calendar)

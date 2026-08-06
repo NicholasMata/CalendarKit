@@ -3,12 +3,14 @@ import CalendarKit
 import SwiftUI
 
 struct SingleSelectionExample: View {
-  @State private var selectedDay: CalendarDay.ID? = SampleCalendar.month.firstDay.advanced(by: 4).id
+  @State private var selectedDay: CalendarDay.ID? = SampleCalendar.month.firstDay.advanced(by: 17).id
 
   var body: some View {
     CalendarExampleContainer(
-      title: "August 2026",
-      subtitle: "Tap a day to replace the current selection."
+      title: SampleCalendar.monthTitle,
+      subtitle: selectedDay == nil
+        ? "Tap a day to select it."
+        : "Tap again to clear, or select another day."
     ) {
       WeekdayLabels(using: SampleCalendar.calendar)
 

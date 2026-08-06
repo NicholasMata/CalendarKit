@@ -5,13 +5,13 @@ import SwiftUI
 struct RangeSelectionExample: View {
   @State private var rangeStart: CalendarDay?
   @State private var selectedRange: ClosedRange<CalendarDay>? = SampleCalendar.month.firstDay
-    .advanced(by: 4)
-    .closedRange(to: SampleCalendar.month.firstDay.advanced(by: 11))
+    .advanced(by: 17)
+    .closedRange(to: SampleCalendar.month.firstDay.advanced(by: 19))
   @State private var usesContinuousStyle = true
 
   var body: some View {
     CalendarExampleContainer(
-      title: "August 2026",
+      title: SampleCalendar.monthTitle,
       subtitle: rangeStart == nil
         ? "Tap a day to start a new range."
         : "Tap another day to complete the range."

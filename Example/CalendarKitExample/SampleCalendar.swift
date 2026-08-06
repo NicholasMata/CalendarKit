@@ -11,7 +11,16 @@ enum SampleCalendar {
     return calendar
   }()
 
-  static let month = CalendarMonth(8, year: 2026, calendar: calendar)
+  static let month = CalendarMonth(containing: CalendarDay(containing: .now, calendar: calendar))
+
+  static var monthTitle: String {
+    let formatter = DateFormatter()
+    formatter.calendar = calendar
+    formatter.locale = calendar.locale
+    formatter.timeZone = calendar.timeZone
+    formatter.setLocalizedDateFormatFromTemplate("MMMM y")
+    return formatter.string(from: month.startDate)
+  }
 
   static func identifier(for day: CalendarDay, prefix: String) -> String {
     String(format: "%@-%04d-%02d-%02d", prefix, day.year, day.monthNumber, day.dayOfMonth)
