@@ -67,6 +67,15 @@ public struct CalendarDay: Strideable, Comparable, Hashable, Identifiable {
     return calendar.dateComponents([.day], from: date, to: other.date).day ?? 0
   }
 
+  /// Returns an inclusive range between this day and another day.
+  ///
+  /// The range orders its bounds chronologically, regardless of which day is earlier.
+  ///
+  /// - Parameter other: The day at the opposite end of the range.
+  public func closedRange(to other: CalendarDay) -> ClosedRange<CalendarDay> {
+    Swift.min(self, other) ... Swift.max(self, other)
+  }
+
   /// Compares two day values by their normalized start dates.
   public static func < (lhs: CalendarDay, rhs: CalendarDay) -> Bool {
     return lhs.date < rhs.date
